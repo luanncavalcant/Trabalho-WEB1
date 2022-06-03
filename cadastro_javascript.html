@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<body>
+    <script>
+    let = empresasCadastradas = [];
+    function cadastrar(empresas) {
+        alert('Cadastrar empresa');
+        let nome = prompt('nome da empresa:');
+        let servico = prompt('Servico que a empresa presta:');
+        let contato = parseInt(prompt('Contato:'));
+        let email = prompt('Email:');
+        let estado = prompt('Local da sua empresa(estado):');
+        let empresa = {
+            nome: nome,
+            servico: servico,
+            contato: contato,
+            email: email,
+            estado: estado
+        };
+        empresas.push(empresa);
+    }
+    
+    function listar(empresas) {
+        alert('Listas de empresas cadastradas.');
+        let mensagem = '';
+        let id = 0;
+        for (let empresa of empresas) {
+            mensagem += id + ': ' + empresa.nome + ' - ' + empresa.servico + ' - ' + empresa.contato + ' - ' + empresa.email + ' - ' + empresa.estado + '\n'
+            id++;
+        }
+        alert(mensagem);
+    }
+
+    function editar(empresas) {
+        listar(empresas)
+        let id = parseInt(prompt('Qual id você deseja editar?'));
+        let empresa = empresas[id];
+        let nome = prompt(`Nome da empresa? [${empresa.nome}]`);
+        if (nome == '') {
+            nome = empresa.nome;
+        }
+        let servico = prompt(`Serviço que a empresa presta? [${empresa.servico}]`);
+        if (servico == '') {
+            servico = empresa.servico;
+        }
+        let contato = parseInt(prompt(`Contato? [${empresa.contato}]`));
+        if (contato == '') {
+            contato = empresa.contato;
+        }
+        let email = prompt(`Email? [${empresa.email}]`);
+        if (email == '') {
+            email = empresa.email;
+        }
+        let estado = prompt(`Estado? [${empresa.estado}]`);
+        if (estado == '') {
+            estado = empresa.estado;
+        }
+        let empresaNova = {
+            nome: nome,
+            servico: servico,
+            contato: contato,
+            email: email,
+            estado: estado
+        }
+        empresas[id] = empresaNova;
+    }
+
+    function apagar(empresas) {
+        listar(empresas);
+        let id = parseInt(prompt('Qual id você quer apagar?'));
+        empresas.splice(id, 1);
+    }
+
+    loop:
+        while (true) {
+            alert('1:Cadastrar\n2:Listar\n3:Editar\n4:Apagar\n5:Sair');
+            opcao = prompt('');
+            switch (opcao) {
+                case '1': 
+                    cadastrar(empresasCadastradas);
+                    break;
+                case '2': 
+                    listar(empresasCadastradas);
+                    break;
+                case '3':
+                    editar(empresasCadastradas);
+                    break;
+                case '4':
+                    apagar(empresasCadastradas);
+                    break;
+                case '5': 
+                    alert('sair');
+                    break loop;
+           }
+        }
+    </script>
+</body>
+</html>
